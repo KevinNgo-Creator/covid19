@@ -37,8 +37,16 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
+<<<<<<< HEAD
+  "author": "Jeff Bell, Kevin Ngo, Avery Rouser, Jomain Rouser",
+  "license": "ISC",
+  "devDependencies": {
+    "concurrently": "^4.1.0",
+    "nodemon": "^1.18.7"
+=======
   "eslintConfig": {
     "extends": "react-app"
+>>>>>>> 37d774246a886414ad3dcaef6f0d5ef6c08bf9d8
   },
   "browserslist": {
     "production": [
