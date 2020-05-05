@@ -15,13 +15,13 @@ export default {
   },
 };
 
-const url = "https://covid19.mathdro.id/api";
+const coronaurl = "https://covid19.mathdro.id/api";
 
 export const fetchData = async (country) => {
-  let changeableUrl = url;
+  let changeableUrl = coronaurl;
 
   if (country) {
-    changeableUrl = `${url}/countries/${country}`;
+    changeableUrl = `${coronaurl}/countries/${country}`;
   }
 
   try {
@@ -37,7 +37,7 @@ export const fetchData = async (country) => {
 
 export const fetchDailyData = async () => {
   try {
-    const { data } = await axios.get(`${url}/daily`);
+    const { data } = await axios.get(`${coronaurl}/daily`);
     return data.map(({ confirmed, deaths, reportDate: date }) => ({
       confirmed: confirmed.total,
       deaths: deaths.total,
@@ -52,10 +52,19 @@ export const fetchCountries = async () => {
   try {
     const {
       data: { countries },
-    } = await axios.get(`${url}/countries`);
+    } = await axios.get(`${coronaurl}/countries`);
 
     return countries.map((country) => country.name);
   } catch (error) {
     return error;
   }
 };
+
+var newsurl = 'http://newsapi.org/v2/top-headlines?' +
+          'country=us&' +
+          'apiKey=240eb95a24ea43e886bb5f1fb00ffe5c';
+var req = new Request(newsurl);
+fetch(req)
+    .then(function(response) {
+        console.log(response.json());
+    })
