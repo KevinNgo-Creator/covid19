@@ -1,8 +1,7 @@
-const express = require("express");
-
-const mongoose = require("mongoose");
-const routes = require("./routes");
+const express = require('express')
+const PORT = process.env.PORT || 3006;
 const app = express();
+<<<<<<< HEAD
 const PORT = process.env.PORT || 3001;
 
 // Define middleware here
@@ -31,4 +30,11 @@ app.get("/home", function (req, res) {
 // Start the API server
 app.listen(PORT, function () {
   console.log(`🌎  ==> API Server now listening on PORT ${PORT}!`);
+=======
+app.use(express.static('./build'));
+app.listen(PORT, () => {
+  console.log(`😎 Server is listening on port ${PORT}`);
+>>>>>>> 37d774246a886414ad3dcaef6f0d5ef6c08bf9d8
 });
+
+// const mysql = require('mysql')
