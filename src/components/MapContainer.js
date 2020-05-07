@@ -39,7 +39,7 @@ function MapContainer() {
     if (data) {
       const map = new mapboxgl.Map({
         container: mapContainer.current,
-        style: 'mapbox://styles/kevinngo/ck9mvrqf30q031ipdl1sudcul',
+        style: 'mapbox://styles/kevinngo/ck9w0s70j02bq1jpxg1kcqmzd',
         center: [16, 27],
         zoom: 1,
       });

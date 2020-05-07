@@ -32,6 +32,7 @@ app.listen(PORT, function () {
 app.use(express.static('./build'));
 app.listen(PORT, () => {
   console.log(`😎 Server is listening on port ${PORT}`);
+})
 });
 
 // const mysql = require('mysql')
