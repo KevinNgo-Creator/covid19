@@ -1,29 +1,36 @@
-import React from "react";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import DashBoard from "./dashboard/components/App.js";
-import NoMatch from "./pages/NoMatch";
-import Header from "./components/Header";
-import Login from "./pages/Login";
+import React from 'react';
+import DesktopApp from './components/App';
+import TabletApp from './components/responsive/tablet/App';
+import MobileApp from './components/responsive/mobile/App';
+import { useMediaQuery } from 'react-responsive';
 
-function App() {
+const Desktop = ({ children }) => {
+  const isDesktop = useMediaQuery({ minWidth: 992 });
+  return isDesktop ? children : null;
+};
+const Tablet = ({ children }) => {
+  const isTablet = useMediaQuery({ minWidth: 768, maxWidth: 991 });
+  return isTablet ? children : null;
+};
+const Mobile = ({ children }) => {
+  const isMobile = useMediaQuery({ maxWidth: 767 });
+  return isMobile ? children : null;
+};
+
+const App = () => {
   return (
-    <Router>
-      <div>
-        <Header />
-        <Switch>
-          <Route exact path={["/", "/login"]}>
-            <Login />
-          </Route>
-          <Route exact path="/dashboard">
-            <DashBoard />
-          </Route>
-          <Route>
-            <NoMatch />
-          </Route>
-        </Switch>
-      </div>
-    </Router>
+    <div>
+      <Desktop>
+        <DesktopApp />
+      </Desktop>
+      <Tablet>
+        <TabletApp />
+      </Tablet>
+      <Mobile>
+        <MobileApp />
+      </Mobile>
+    </div>
   );
-}
+};
 
 export default App;
