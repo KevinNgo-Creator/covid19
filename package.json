@@ -15,6 +15,7 @@
     "bootstrap": "^4.4.1",
     "chart.js": "^2.9.3",
     "mapbox-gl": "^1.9.1",
+    "mongoose": "^5.9.12",
     "netlify-cli": "^2.40.0",
     "node-sass": "^4.13.1",
     "react": "^16.13.1",
