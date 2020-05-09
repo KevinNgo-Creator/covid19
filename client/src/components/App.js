@@ -1,16 +1,17 @@
-import React, { Component, Fragment } from 'react';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import NavItem from './Nav';
-import Countries from './Countries';
-import axios from 'axios';
-import Total from './Total';
-import About from './About';
-import AboutCorona from './AboutCorona';
-import Prevention from './Prevention';
-import CountryData from './CountryData';
-import MapContainer from './MapContainer';
-import { Tab, Nav, Tabs, Container, Row, Col } from 'react-bootstrap';
-import LocalData from './LocalData';
+import React, { Component, Fragment } from "react";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import NavItem from "./Nav";
+import Countries from "./Countries";
+import axios from "axios";
+import Total from "./Total";
+import About from "./About";
+import AboutCorona from "./AboutCorona";
+import Prevention from "./Prevention";
+import CountryData from "./CountryData";
+import MapContainer from "./MapContainer";
+import { Tab, Nav, Tabs, Container, Row, Col } from "react-bootstrap";
+import LocalData from "./LocalData";
+import Login from "../pages/Login";
 
 class App extends Component {
   state = {
@@ -22,7 +23,7 @@ class App extends Component {
   getCountries = async () => {
     this.setState({ loading: true });
 
-    const res = await axios.get('https://corona.lmao.ninja/v2/countries/');
+    const res = await axios.get("https://corona.lmao.ninja/v2/countries/");
 
     this.setState({
       countries: res.data.sort((a, b) => b.cases - a.cases),
@@ -43,9 +44,9 @@ class App extends Component {
   };
 
   componentWillMount() {
-    localStorage.getItem('countries') &&
+    localStorage.getItem("countries") &&
       this.setState({
-        countries: JSON.parse(localStorage.getItem('countries')),
+        countries: JSON.parse(localStorage.getItem("countries")),
         loading: false,
       });
   }
@@ -56,8 +57,8 @@ class App extends Component {
   }
 
   componentWillUpdate(nextProps, nextState) {
-    localStorage.setItem('countries', JSON.stringify(nextState.countries));
-    localStorage.setItem('country', JSON.stringify(nextState.country));
+    localStorage.setItem("countries", JSON.stringify(nextState.countries));
+    localStorage.setItem("country", JSON.stringify(nextState.country));
   }
 
   render() {
@@ -67,9 +68,10 @@ class App extends Component {
           <NavItem />
 
           <Switch>
+            <Route exact path="/" render={<Login />} />
             <Route
               exact
-              path='/'
+              path="/dashboard"
               render={(props) => (
                 <Fragment>
                   <Container fluid>
@@ -77,32 +79,32 @@ class App extends Component {
                       <Col sm={3}>
                         <Total />
                       </Col>
-                      <Col sm={9} style={{ marginTop: '70px' }}>
-                        <Tab.Container defaultActiveKey='first'>
+                      <Col sm={9} style={{ marginTop: "70px" }}>
+                        <Tab.Container defaultActiveKey="first">
                           <Row>
                             <Col sm={3}></Col>
                             <Col sm={6}>
                               <Nav
                                 fill
-                                variant='pills'
-                                defaultActiveKey='first'
+                                variant="pills"
+                                defaultActiveKey="first"
                               >
                                 <Nav.Item>
                                   <Nav.Link
-                                    className='btn-info'
-                                    eventKey='first'
+                                    className="btn-info"
+                                    eventKey="first"
                                   >
                                     Covid-19 Map
                                   </Nav.Link>
                                 </Nav.Item>
                                 <Nav.Item
                                   style={{
-                                    marginLeft: '5px',
+                                    marginLeft: "5px",
                                   }}
                                 >
                                   <Nav.Link
-                                    eventKey='second'
-                                    className='btn-info'
+                                    eventKey="second"
+                                    className="btn-info"
                                   >
                                     All Countries
                                   </Nav.Link>
@@ -116,14 +118,14 @@ class App extends Component {
                             <Col>
                               <Tab.Content
                                 style={{
-                                  marginLeft: '5px',
-                                  marginRight: '5px',
+                                  marginLeft: "5px",
+                                  marginRight: "5px",
                                 }}
                               >
-                                <Tab.Pane eventKey='first'>
+                                <Tab.Pane eventKey="first">
                                   <MapContainer />
                                 </Tab.Pane>
-                                <Tab.Pane eventKey='second'>
+                                <Tab.Pane eventKey="second">
                                   <Row>
                                     <Col>
                                       <Countries
@@ -147,10 +149,10 @@ class App extends Component {
                 </Fragment>
               )}
             />
-            <Route exact path='/about' component={About} />
+            <Route exact path="/about" component={About} />
             <Route
               exact
-              path='/country/:country'
+              path="/country/:country"
               render={(routeProps) => (
                 <CountryData
                   {...routeProps}
@@ -160,8 +162,8 @@ class App extends Component {
                 />
               )}
             />
-            <Route exact path='/about-covid-19' component={AboutCorona} />
-            <Route exact path='/prevention' component={Prevention} />
+            <Route exact path="/about-covid-19" component={AboutCorona} />
+            <Route exact path="/prevention" component={Prevention} />
           </Switch>
         </div>
       </Router>
