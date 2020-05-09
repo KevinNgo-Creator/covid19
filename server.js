@@ -1,5 +1,10 @@
+<<<<<<< HEAD
   
 const express = require("express");
+=======
+const express = require("express");
+
+>>>>>>> ee858a4dd3f0c9ae210cb45e20000ccf9a861ca0
 const mongoose = require("mongoose");
 const routes = require("./routes");
 const app = express();
@@ -16,7 +21,11 @@ if (process.env.NODE_ENV === "production") {
 app.use(routes);
 
 // Connect to the Mongo DB
+<<<<<<< HEAD
 mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/reactreadinglist");
+=======
+mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/covid19db");
+>>>>>>> ee858a4dd3f0c9ae210cb45e20000ccf9a861ca0
 
 // Start the API server
 app.listen(PORT, function() {
