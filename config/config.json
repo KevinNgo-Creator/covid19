@@ -1,26 +1,23 @@
 {
   "development": {
     "username": "root",
-    "password": "P@ssW0rd",
-    "database": "places_db",
+    "password": "Rouser12",
+    "database": "blogger",
     "host": "127.0.0.1",
-    "dialect": "mysql",
-    "apikey": "4bbb8ffc94msh0c3349efbea52d1p11acb0jsn79772d7421db"
+    "dialect": "mysql"
   },
   "test": {
     "username": "root",
-    "password": "P@ssW0rd",
-    "database": "places_db",
+    "password": null,
+    "database": "database_test",
     "host": "127.0.0.1",
-    "dialect": "mysql",
-    "apikey": "4bbb8ffc94msh0c3349efbea52d1p11acb0jsn79772d7421db"
+    "dialect": "mysql"
   },
   "production": {
     "username": "root",
     "password": null,
-    "database": "places_db",
+    "database": "database_production",
     "host": "127.0.0.1",
-    "dialect": "mysql",
-    "apikey": "4bbb8ffc94msh0c3349efbea52d1p11acb0jsn79772d7421db"
+    "dialect": "mysql"
   }
 }
