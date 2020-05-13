@@ -4,7 +4,7 @@ import useSWR from 'swr';
 import 'mapbox-gl/dist/mapbox-gl.css';
 
 import './Map.css';
-mapboxgl.accessToken =
+mapboxgl.accessToken = 
   'pk.eyJ1Ijoia2V2aW5uZ28iLCJhIjoiY2s5bXZsNWg0MDlieTNsb2J3c3dxNnFmbiJ9.Bk_ufPwqDhPdggHH3S__AA';
 
 function MapContainer() {

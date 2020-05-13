@@ -1,51 +1,55 @@
-import React from 'react';
+import React from "react";
 import {
   Navbar,
   NavbarBrand,
   NavItem,
   NavLink,
   Nav,
-  Container
-} from 'reactstrap';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faLungsVirus } from '@fortawesome/free-solid-svg-icons';
+  Container,
+} from "reactstrap";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faLungsVirus } from "@fortawesome/free-solid-svg-icons";
 
-const TopBar = props => {
+const TopBar = (props) => {
   return (
     <div>
-      <Navbar color='light' light expand='md' className='fixed-top'>
+      <Navbar color="light" light expand="md" className="fixed-top">
         <Container fluid={true}>
           <NavbarBrand
-            style={{ marginLeft: '20px', marginTop: '-10px' }}
-            href='/'
+            style={{ marginLeft: "20px", marginTop: "-10px" }}
+            href="/"
           >
             <FontAwesomeIcon
               icon={faLungsVirus}
-              style={{ color: 'red', fontSize: '30px' }}
-            />{' '}
+              style={{ color: "red", fontSize: "30px" }}
+            />{" "}
             COVID-19 (Coronavirus) Tracker
           </NavbarBrand>
-          <Nav navbar className=' float-right'>
+          <Nav navbar className=" float-right">
             <NavItem>
-              <NavLink href='/'>
+              <NavLink href="/">
                 <h6>Home</h6>
               </NavLink>
             </NavItem>
-
             <NavItem>
-              <NavLink href='/about-covid-19'>
+              <NavLink href="/signup">
+                <h6>Sign up</h6>
+              </NavLink>
+            </NavItem>
+            <NavItem>
+              <NavLink href="/about-covid-19">
                 <h6>What is COVID-19?</h6>
               </NavLink>
             </NavItem>
 
             <NavItem>
-              <NavLink href='/prevention'>
+              <NavLink href="/prevention">
                 <h6>Prevention</h6>
               </NavLink>
             </NavItem>
 
             <NavItem>
-              <NavLink href='/about'>
+              <NavLink href="/about">
                 <h6>About</h6>
               </NavLink>
             </NavItem>

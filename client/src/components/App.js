@@ -9,16 +9,26 @@ import AboutCorona from "./AboutCorona";
 import Prevention from "./Prevention";
 import CountryData from "./CountryData";
 import MapContainer from "./MapContainer";
-import { Tab, Nav, Tabs, Container, Row, Col } from "react-bootstrap";
+import { Tab, Nav, Container, Row, Col } from "react-bootstrap";
 import LocalData from "./LocalData";
 import Login from "../pages/Login";
+import Signup from "./sign-up";
+import LoginForm from "./login-form";
 
 class App extends Component {
-  state = {
-    countries: [],
-    country: [],
-    loading: false,
-  };
+  constructor() {
+    super();
+    this.state = {
+      countries: [],
+      country: [],
+      loading: false,
+      loggedIn: false,
+      username: null,
+    };
+    this.getUser = this.getUser.bind(this);
+    this.componentDidMount = this.componentDidMount.bind(this);
+    this.updateUser = this.updateUser.bind(this);
+  }
 
   getCountries = async () => {
     this.setState({ loading: true });
@@ -43,6 +53,31 @@ class App extends Component {
     this.setState({ country: res.data, loading: false });
   };
 
+  updateUser(userObject) {
+    this.setState(userObject);
+  }
+
+  getUser() {
+    axios.get("/user/").then((response) => {
+      console.log("Get user response: ");
+      console.log(response.data);
+      if (response.data.user) {
+        console.log("Get User: There is a user saved in the server session: ");
+
+        this.setState({
+          loggedIn: true,
+          username: response.data.user.username,
+        });
+      } else {
+        console.log("Get user: no user");
+        this.setState({
+          loggedIn: false,
+          username: null,
+        });
+      }
+    });
+  }
+
   componentWillMount() {
     localStorage.getItem("countries") &&
       this.setState({
@@ -54,6 +89,7 @@ class App extends Component {
   async componentDidMount() {
     this.getCountries();
     this.getCountryData();
+    this.getUser();
   }
 
   componentWillUpdate(nextProps, nextState) {
@@ -65,10 +101,22 @@ class App extends Component {
     return (
       <Router>
         <div>
-          <NavItem />
+          <NavItem
+            updateUser={this.updateUser}
+            loggedIn={this.state.loggedIn}
+          />
 
+          {/* greet user if logged in: */}
+          {this.state.loggedIn && <p>Join the party, {this.state.username}!</p>}
           <Switch>
-            <Route exact path="/" render={<Login />} />
+            {/* Routes to different components */}
+            <Route exact path="/" component={LoginForm} />
+
+            <Route
+              path="/login"
+              render={() => <LoginForm updateUser={this.updateUser} />}
+            />
+            <Route path="/signup" render={() => <Signup />} />
             <Route
               exact
               path="/dashboard"
