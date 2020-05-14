@@ -11,7 +11,6 @@ import CountryData from "./CountryData";
 import MapContainer from "./MapContainer";
 import { Tab, Nav, Container, Row, Col } from "react-bootstrap";
 import LocalData from "./LocalData";
-import Login from "../pages/Login";
 import Signup from "./sign-up";
 import LoginForm from "./login-form";
 
@@ -110,13 +109,19 @@ class App extends Component {
           {this.state.loggedIn && <p>Join the party, {this.state.username}!</p>}
           <Switch>
             {/* Routes to different components */}
-            <Route exact path="/" component={LoginForm} />
+            <Route
+              exact
+              path="/"
+              render={() => <LoginForm updateUser={this.updateUser} />}
+            />
 
             <Route
+              exact
               path="/login"
               render={() => <LoginForm updateUser={this.updateUser} />}
             />
             <Route path="/signup" render={() => <Signup />} />
+
             <Route
               exact
               path="/dashboard"
@@ -193,10 +198,14 @@ class App extends Component {
                       <Col></Col>
                     </Row>
                   </Container>
-                  <LocalData />
+                  <LocalData
+                    updateuser={this.updateUser}
+                    user={this.state.username}
+                  />
                 </Fragment>
               )}
             />
+
             <Route exact path="/about" component={About} />
             <Route
               exact
