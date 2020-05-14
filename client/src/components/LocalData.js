@@ -74,7 +74,24 @@ class LocalData extends Component {
     });
   }
 
+  saveCountry = (country) => {
+    console.log(country);
+    axios
+      .post("/user/country", {
+        username: this.props.username,
+        defaultCountry: country,
+      })
+      .then((response) => {
+        console.log(response);
+      })
+      .catch((error) => {
+        console.log("save country error: ");
+        console.log(error);
+      });
+  };
+
   setSelectedCountry = (country) => {
+    this.saveCountry(country);
     axios
       .get(`https://corona.lmao.ninja/v2/countries/${country}`)
       .then((res) => {
@@ -92,6 +109,16 @@ class LocalData extends Component {
   };
 
   render() {
+    // Add code to "Get" and set the default_County
+    console.log("Get Country");
+    console.log(this.props.username);
+    axios.get(`/country/${this.props.username}`).then((res) => {
+      console.log(res.username, res.defaultCountry);
+      this.setState({
+        default_country: res.defaultCountry,
+      });
+    });
+
     let html = <Spinner />;
     if (this.state.loading && this.state.default_country !== null) {
       html = (

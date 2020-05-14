@@ -28,6 +28,25 @@ router.post("/", (req, res) => {
   });
 });
 
+router.post("/country", (req, res) => {
+  console.log("save country");
+
+  const { username, defaultCountry } = req.body;
+  console.log(username, defaultCountry);
+  // ADD VALIDATION
+  User.findOne({ username: username }, (err, user) => {
+    if (err) {
+      console.log("User.js post error: ", err);
+    } else if (user) {
+      user.defaultCountry = defaultCountry;
+      user.save((err, savedUser) => {
+        if (err) return res.json(err);
+        res.json(savedUser);
+      });
+    }
+  });
+});
+
 router.post(
   "/login",
   function (req, res, next) {
@@ -53,6 +72,15 @@ router.get("/", (req, res, next) => {
   } else {
     res.json({ user: null });
   }
+});
+
+router.get("/country/:user", (req, res) => {
+  console.log("Get country");
+  const username = req.params.user;
+  console.log(username);
+  User.findOne({ username: username }, (err, user) => {
+    res.json({ defaultCountry: user.defaultCountry });
+  });
 });
 
 router.post("/logout", (req, res) => {

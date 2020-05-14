@@ -200,7 +200,7 @@ class App extends Component {
                   </Container>
                   <LocalData
                     updateuser={this.updateUser}
-                    user={this.state.username}
+                    username={this.state.username}
                   />
                 </Fragment>
               )}
