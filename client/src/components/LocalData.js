@@ -33,8 +33,31 @@ class LocalData extends Component {
     default_country: null,
     loading: false,
   };
-
+  componentDidUpdate(prevProps, prevState) {
+    console.log("DidUpdate");
+    if (prevProps.username !== this.props.username && this.props.username) {
+      // Add code to "Get" and set the default_County
+      console.log("Get Country");
+      console.log(this.props.username);
+      axios
+        .get(`/user/country/${this.props.username}`)
+        .then((res) => {
+          console.log(res);
+          console.log("Country: " + res.data.defaultCountry);
+          this.setState({
+            default_country: res.data.defaultCountry,
+          });
+          this.setCountryData(res.data.defaultCountry);
+        })
+        .catch((error) => {
+          console.log("Get country error: ");
+          console.log(error);
+        });
+    }
+  }
   componentDidMount() {
+    // Add code to "Get" and set the default_County
+    console.log("DidMount....");
     axios.get("https://corona.lmao.ninja/v2/countries").then((res) => {
       this.setState({
         countries: res.data.countries,
@@ -54,26 +77,31 @@ class LocalData extends Component {
       });
 
     axios.get("https://ipapi.co/country").then((res) => {
+      console.log(res);
       this.setState({
         default_country: res.data,
       });
-      axios
-        .get(`https://corona.lmao.ninja/v2/countries/${res.data}`)
-        .then((res) => {
-          this.setState({
-            cases: res.data.cases,
-            deaths: res.data.deaths,
-            recovered: res.data.recovered,
-            active: res.data.active,
-            critical: res.data.critical,
-            todayCases: res.data.todayCases,
-            todayDeaths: res.data.todayDeaths,
-            country: res.data.country,
-          });
-        });
+      console.log(res.data);
+      this.setCountryData(res.data);
     });
   }
-
+  setCountryData = (country) => {
+    console.log("SetCountryData...");
+    axios
+      .get(`https://corona.lmao.ninja/v2/countries/${country}`)
+      .then((res) => {
+        this.setState({
+          cases: res.data.cases,
+          deaths: res.data.deaths,
+          recovered: res.data.recovered,
+          active: res.data.active,
+          critical: res.data.critical,
+          todayCases: res.data.todayCases,
+          todayDeaths: res.data.todayDeaths,
+          country: res.data.country,
+        });
+      });
+  };
   saveCountry = (country) => {
     console.log(country);
     axios
@@ -109,16 +137,6 @@ class LocalData extends Component {
   };
 
   render() {
-    // Add code to "Get" and set the default_County
-    console.log("Get Country");
-    console.log(this.props.username);
-    axios.get(`/country/${this.props.username}`).then((res) => {
-      console.log(res.username, res.defaultCountry);
-      this.setState({
-        default_country: res.defaultCountry,
-      });
-    });
-
     let html = <Spinner />;
     if (this.state.loading && this.state.default_country !== null) {
       html = (

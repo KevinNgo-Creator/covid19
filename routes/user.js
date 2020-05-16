@@ -64,6 +64,27 @@ router.post(
   }
 );
 
+router.get("/country/:user", (req, res) => {
+  console.log("Get country");
+  const username = req.params.user;
+  console.log(username);
+  User.findOne({ username: username }, (err, user) => {
+    console.log(user);
+    res.json({ defaultCountry: user.defaultCountry });
+  });
+});
+
+router.get("/logout", (req, res) => {
+  console.log("Logging out...");
+  if (req.user) {
+    req.logout();
+    res.send({ msg: "logging out" });
+  } else {
+    res.send({ msg: "no user to log out" });
+  }
+  res.redirect("/");
+});
+
 router.get("/", (req, res, next) => {
   console.log("===== user!!======");
   console.log(req.user);
@@ -73,23 +94,4 @@ router.get("/", (req, res, next) => {
     res.json({ user: null });
   }
 });
-
-router.get("/country/:user", (req, res) => {
-  console.log("Get country");
-  const username = req.params.user;
-  console.log(username);
-  User.findOne({ username: username }, (err, user) => {
-    res.json({ defaultCountry: user.defaultCountry });
-  });
-});
-
-router.post("/logout", (req, res) => {
-  if (req.user) {
-    req.logout();
-    res.send({ msg: "logging out" });
-  } else {
-    res.send({ msg: "no user to log out" });
-  }
-});
-
 module.exports = router;
