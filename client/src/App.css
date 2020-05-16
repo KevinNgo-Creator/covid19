@@ -12,7 +12,7 @@
   display: block;
   padding: 20px;
   overflow-x: hidden;
-  overflow-y: auto; 
+  overflow-y: auto;
   background-color: #f5f5f5;
   border-right: 1px solid #eee;
 }
@@ -67,7 +67,7 @@
 
 .header-fixed > tbody > tr:after,
 .header-fixed > thead > tr:after {
-  content: ' ';
+  content: " ";
   display: block;
   visibility: hidden;
   clear: both;
@@ -90,7 +90,7 @@
   border: none;
   background: transparent;
 }
-.flag-select__btn[aria-expanded='true']:after {
+.flag-select__btn[aria-expanded="true"]:after {
   border-top: 0;
   border-left: 5px solid transparent;
   border-right: 5px solid transparent;
@@ -106,4 +106,28 @@
   padding: 8px 0;
   max-height: 160px;
   overflow: auto;
+}
+
+.App-intro {
+  font-size: large;
+}
+
+.navbar {
+  margin-top: auto;
+}
+#top-filler {
+  margin-bottom: auto;
+}
+
+#nav-container {
+  align-items: flex-end;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }

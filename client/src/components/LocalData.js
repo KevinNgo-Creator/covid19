@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
-import axios from 'axios';
-import ReactFlagsSelect from 'react-flags-select';
-import 'react-flags-select/css/react-flags-select.css';
+import React, { Component } from "react";
+import axios from "axios";
+import ReactFlagsSelect from "react-flags-select";
+import "react-flags-select/css/react-flags-select.css";
 import {
   Spinner,
   Container,
@@ -11,10 +11,10 @@ import {
   Row,
   Col,
   Button,
-} from 'reactstrap';
-import '../App.css';
-import TopNews from './TopNews';
-import TopNewsProvider from './TopNewsProvider';
+} from "reactstrap";
+import "../App.css";
+import TopNews from "./TopNews";
+import TopNewsProvider from "./TopNewsProvider";
 
 class LocalData extends Component {
   state = {
@@ -33,7 +33,7 @@ class LocalData extends Component {
   };
 
   componentDidMount() {
-    axios.get('https://corona.lmao.ninja/v2/countries').then((res) => {
+    axios.get("https://corona.lmao.ninja/v2/countries").then((res) => {
       this.setState({
         countries: res.data.countries,
         loading: true,
@@ -42,7 +42,7 @@ class LocalData extends Component {
 
     axios
       .get(
-        'http://newsapi.org/v2/everything?q=covid19&language=en&sortBy=publishedAt&apiKey=240eb95a24ea43e886bb5f1fb00ffe5c'
+        "http://newsapi.org/v2/everything?q=covid19&language=en&sortBy=publishedAt&apiKey=240eb95a24ea43e886bb5f1fb00ffe5c"
       )
       .then((res) => {
         this.setState({
@@ -51,7 +51,7 @@ class LocalData extends Component {
         });
       });
 
-    axios.get('https://ipapi.co/country').then((res) => {
+    axios.get("https://ipapi.co/country").then((res) => {
       this.setState({
         default_country: res.data,
       });
@@ -72,7 +72,24 @@ class LocalData extends Component {
     });
   }
 
+  saveCountry = (country) => {
+    console.log(country);
+    axios
+      .post("/user/country", {
+        username: this.props.username,
+        defaultCountry: country,
+      })
+      .then((response) => {
+        console.log(response);
+      })
+      .catch((error) => {
+        console.log("save country error: ");
+        console.log(error);
+      });
+  };
+
   setSelectedCountry = (country) => {
+    this.saveCountry(country);
     axios
       .get(`https://corona.lmao.ninja/v2/countries/${country}`)
       .then((res) => {
@@ -90,6 +107,16 @@ class LocalData extends Component {
   };
 
   render() {
+    // Add code to "Get" and set the default_County
+    console.log("Get Country");
+    console.log(this.props.username);
+    axios.get(`/country/${this.props.username}`).then((res) => {
+      console.log(res.username, res.defaultCountry);
+      this.setState({
+        default_country: res.defaultCountry,
+      });
+    });
+
     let html = <Spinner />;
     if (this.state.loading && this.state.default_country !== null) {
       html = (
@@ -99,7 +126,7 @@ class LocalData extends Component {
           defaultCountry={this.state.default_country}
           onSelect={(code) => this.setSelectedCountry(code)}
           selectedSize={20}
-          alignOptions='left'
+          alignOptions="left"
         />
       );
     }
@@ -116,27 +143,27 @@ class LocalData extends Component {
       2
     );
     return (
-      <div style={{ marginTop: '20px' }}>
+      <div style={{ marginTop: "20px" }}>
         <div>
           <Container fluid>
-            <Row style={{ marginBottom: '35px', marginLeft: '5px' }}>
+            <Row style={{ marginBottom: "35px", marginLeft: "5px" }}>
               <Col sm={4}>
                 <Button
                   disabled
                   style={{
-                    backgroundColor: 'black',
-                    color: 'white',
-                    width: '100%',
+                    backgroundColor: "black",
+                    color: "white",
+                    width: "100%",
                   }}
                 >
                   <h4>Top News</h4>
                 </Button>
 
                 <Card
-                  className='shadow-sm'
+                  className="shadow-sm"
                   style={{
-                    height: '435px',
-                    overflowY: 'auto',
+                    height: "435px",
+                    overflowY: "auto",
                   }}
                 >
                   <TopNewsProvider
@@ -145,39 +172,39 @@ class LocalData extends Component {
                   />
                 </Card>
               </Col>
-              <Col sm={8} style={{ textAlign: 'center', marginTop: '40px' }}>
+              <Col sm={8} style={{ textAlign: "center", marginTop: "40px" }}>
                 <div>
-                  <Button disabled style={{ backgroundColor: '#2D9707' }}>
+                  <Button disabled style={{ backgroundColor: "#2D9707" }}>
                     <h3>Local Country's Update</h3>
                   </Button>
                 </div>
                 <div
                   style={{
-                    textAlign: 'center',
-                    marginTop: '60px',
-                    marginLeft: '500px',
+                    textAlign: "center",
+                    marginTop: "60px",
+                    marginLeft: "500px",
                   }}
                 >
                   {html}
                 </div>
-                <h3 style={{ marginLeft: '-300px', marginTop: '-50px' }}>
+                <h3 style={{ marginLeft: "-300px", marginTop: "-50px" }}>
                   {this.state.country}'s COVID-19 Statistics
                 </h3>
                 <Row
-                  style={{ textAlign: 'center' }}
-                  style={{ marginTop: '45px', marginRight: '10px' }}
+                  style={{ textAlign: "center" }}
+                  style={{ marginTop: "45px", marginRight: "10px" }}
                 >
                   <Col>
                     <Card
                       outline
                       style={{
-                        borderColor: '#3185F0',
-                        borderWidth: '2px',
-                        height: '100px',
+                        borderColor: "#3185F0",
+                        borderWidth: "2px",
+                        height: "100px",
                       }}
-                      className='shadow-sm'
+                      className="shadow-sm"
                     >
-                      <h1 style={{ color: '#3185F0' }}>{this.state.cases}</h1>
+                      <h1 style={{ color: "#3185F0" }}>{this.state.cases}</h1>
                       <h4>Total Infected</h4>
                     </Card>
                   </Col>
@@ -185,13 +212,13 @@ class LocalData extends Component {
                     <Card
                       outline
                       style={{
-                        borderColor: '#F03131',
-                        borderWidth: '2px',
-                        height: '100px',
+                        borderColor: "#F03131",
+                        borderWidth: "2px",
+                        height: "100px",
                       }}
-                      className='shadow-sm'
+                      className="shadow-sm"
                     >
-                      <h1 style={{ color: '#F03131' }}>{this.state.deaths}</h1>
+                      <h1 style={{ color: "#F03131" }}>{this.state.deaths}</h1>
                       <h4>Total Deaths</h4>
                     </Card>
                   </Col>
@@ -199,13 +226,13 @@ class LocalData extends Component {
                     <Card
                       outline
                       style={{
-                        borderColor: '#099714',
-                        borderWidth: '2px',
-                        height: '100px',
+                        borderColor: "#099714",
+                        borderWidth: "2px",
+                        height: "100px",
                       }}
-                      className='shadow-sm'
+                      className="shadow-sm"
                     >
-                      <h1 style={{ color: '#099714' }}>
+                      <h1 style={{ color: "#099714" }}>
                         {this.state.recovered}
                       </h1>
                       <h4>Total Recovered</h4>
@@ -214,9 +241,9 @@ class LocalData extends Component {
                 </Row>
                 <Row
                   style={{
-                    marginTop: '20px',
+                    marginTop: "20px",
 
-                    marginRight: '10px',
+                    marginRight: "10px",
                   }}
                 >
                   <Col>
@@ -224,14 +251,14 @@ class LocalData extends Component {
                       body
                       inverse
                       style={{
-                        backgroundColor: '#333',
-                        borderColor: '#3185F0',
-                        borderWidth: '2px',
-                        height: '100px',
+                        backgroundColor: "#333",
+                        borderColor: "#3185F0",
+                        borderWidth: "2px",
+                        height: "100px",
                       }}
-                      className='shadow-sm'
+                      className="shadow-sm"
                     >
-                      <h1 style={{ color: '#3185F0', marginTop: '-15px' }}>
+                      <h1 style={{ color: "#3185F0", marginTop: "-15px" }}>
                         {this.state.todayCases}
                       </h1>
                       <h4>Infected Today </h4>
@@ -241,14 +268,14 @@ class LocalData extends Component {
                     <Card
                       inverse
                       style={{
-                        backgroundColor: '#333',
-                        borderColor: '#3185F0',
-                        borderWidth: '2px',
-                        height: '100px',
+                        backgroundColor: "#333",
+                        borderColor: "#3185F0",
+                        borderWidth: "2px",
+                        height: "100px",
                       }}
-                      className='shadow-sm'
+                      className="shadow-sm"
                     >
-                      <h1 style={{ color: '#F03131' }}>
+                      <h1 style={{ color: "#F03131" }}>
                         {this.state.todayDeaths}
                       </h1>
                       <h4>Deaths Today </h4>
@@ -258,13 +285,13 @@ class LocalData extends Component {
                     <Card
                       outline
                       style={{
-                        borderColor: '#F03131',
-                        borderWidth: '2px',
-                        height: '100px',
+                        borderColor: "#F03131",
+                        borderWidth: "2px",
+                        height: "100px",
                       }}
-                      className='shadow-sm'
+                      className="shadow-sm"
                     >
-                      <h1 style={{ color: '#F03131' }}>{mortalityRate}%</h1>
+                      <h1 style={{ color: "#F03131" }}>{mortalityRate}%</h1>
                       <h4>Mortality Rate </h4>
                     </Card>
                   </Col>
@@ -272,14 +299,13 @@ class LocalData extends Component {
               </Col>
             </Row>
             <hr />
-            <Row style={{ height: '40px', textAlign: 'center' }}>
+            <Row style={{ height: "40px", textAlign: "center" }}>
               <Col sm={3}></Col>
               <Col sm={6}>
                 <a></a>
               </Col>
               <Col sm={3}>
-                <div>
-                </div>
+                <div></div>
               </Col>
             </Row>
           </Container>

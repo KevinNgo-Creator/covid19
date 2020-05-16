@@ -1,8 +1,8 @@
-import React from 'react';
-import DesktopApp from './components/App';
-import TabletApp from './components/responsive/tablet/App';
-import MobileApp from './components/responsive/mobile/App';
-import { useMediaQuery } from 'react-responsive';
+import React from "react";
+import DesktopApp from "./components/App";
+import TabletApp from "./components/responsive/tablet/App";
+import MobileApp from "./components/responsive/mobile/App";
+import { useMediaQuery } from "react-responsive";
 
 const Desktop = ({ children }) => {
   const isDesktop = useMediaQuery({ minWidth: 992 });
