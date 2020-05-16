@@ -1,0 +1,79 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Virtual Vacation</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.8.0/css/bulma.min.css" />
+  <link href="stylesheets/style.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Great+Vibes&display=swap" rel="stylesheet">
+  <link rel="shortcut icon" href="./assets/images/vacation.ico" type="image/x-icon"/>
+  <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+  <script src = "https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+    #myVideo {
+      position: fixed;
+      right: 0;
+      bottom: 0;
+      min-width: 100%; 
+      min-height: 100%;
+    }
+    </style>
+</head>
+<body>
+  <form id="login" class="login">
+  <div class="modal is-active">
+    <div class="modal-background"></div>
+    <div class="modal-card">
+      <header class="modal-card-head" style="background-color: rgb(31, 29, 29);">
+        <p class="modal-card-title" style="color: rgb(221, 219, 219); font-family: 'Aclonica', sans-serif;">Login</p>
+        <button class="delete" aria-label="close"></button>
+      </header>
+      <section class="modal-card-body">
+        <div class="navbar-item" id="vaykay" style="font-size: 55px;">      
+          Virtual Vacation
+        </div>
+        <br>
+        <div class="field">
+          <p class="control has-icons-left has-icons-right">
+            <input id="email-input" class="input" type="email" placeholder="Email">
+            <span class="icon is-small is-left">
+              <i class="fas fa-envelope"></i>
+            </span>
+          </p>
+        </div>
+        <br>
+        <div class="field">
+          <p class="control has-icons-left">
+            <input id="password-input" class="input" type="password" placeholder="Password">
+            <span class="icon is-small is-left">
+              <i class="fas fa-lock"></i>
+            </span>
+          </p>
+        </div>
+        <div class="field">
+          <p class="control">
+            <br>
+            <button class="button is-outlined is-dark">
+              Login
+            </button>
+          </p>
+          <br>
+          <p>Or sign up <a href="signup.html">here</a></p>
+        </div>
+      </section>
+    </div>
+  </div>
+  </form>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script type="text/javascript" src="js/login.js"></script>
+  <video autoplay muted loop id="myVideo">
+    <source src="assets/images/water.mp4" type="video/mp4">
+  </video>
+</body>
+</html>
