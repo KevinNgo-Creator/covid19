@@ -4,8 +4,10 @@ const LocalStrategy = require("passport-local").Strategy;
 const strategy = new LocalStrategy(
   {
     usernameField: "username", // not necessary, DEFAULT
+    passwordField: "password",
+    passReqToCallback: true,
   },
-  function (username, password, done) {
+  function (req, username, password, done) {
     User.findOne({ username: username }, (err, user) => {
       if (err) {
         return done(err);
