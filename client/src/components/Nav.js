@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useReducer } from "react";
 import {
   Navbar,
   NavbarBrand,
@@ -9,6 +9,7 @@ import {
 } from "reactstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLungsVirus } from "@fortawesome/free-solid-svg-icons";
+import Axios from "axios";
 
 const TopBar = (props) => {
   return (
@@ -32,9 +33,15 @@ const TopBar = (props) => {
               </NavLink>
             </NavItem>
             <NavItem>
-              <NavLink href="/signup">
-                <h6>Sign up</h6>
-              </NavLink>
+              {props.loggedIn ? (
+                <NavLink href="/logout">
+                  <h6>Logout</h6>
+                </NavLink>
+              ) : (
+                <NavLink href="/signup">
+                  <h6>Sign up</h6>
+                </NavLink>
+              )}
             </NavItem>
             <NavItem>
               <NavLink href="/about-covid-19">

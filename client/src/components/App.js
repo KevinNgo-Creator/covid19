@@ -13,6 +13,7 @@ import { Tab, Nav, Container, Row, Col } from "react-bootstrap";
 import LocalData from "./LocalData";
 import Signup from "./sign-up";
 import LoginForm from "./login-form";
+import Logout from "./logout";
 
 class App extends Component {
   constructor() {
@@ -113,6 +114,11 @@ class App extends Component {
               exact
               path="/"
               render={() => <LoginForm updateUser={this.updateUser} />}
+            />
+            <Route
+              exact
+              path="/logout"
+              render={() => <Logout updateUser={this.updateUser} />}
             />
 
             <Route

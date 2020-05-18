@@ -3,6 +3,7 @@ const router = express.Router();
 const User = require("../database/models/user.js");
 const passport = require("../passport");
 
+// /user/
 router.post("/", (req, res) => {
   console.log("user signup");
 
@@ -47,13 +48,10 @@ router.post("/country", (req, res) => {
   });
 });
 
+// /user/login
 router.post(
   "/login",
-  function (req, res, next) {
-    console.log("routes/user.js, login, req.body: ");
-    console.log(req.body);
-    next();
-  },
+
   passport.authenticate("local"),
   (req, res) => {
     console.log("logged in", req.user);
@@ -64,6 +62,25 @@ router.post(
   }
 );
 
+router.get("/country/:user", (req, res) => {
+  console.log("Get country");
+  const username = req.params.user;
+  console.log(username);
+  User.findOne({ username: username }, (err, user) => {
+    console.log(user);
+    res.json({ defaultCountry: user.defaultCountry });
+  });
+});
+
+// //user/logout
+router.get("/logout", (req, res) => {
+  console.log("Logging out...");
+  if (req.user) {
+    req.logout();
+  }
+  res.redirect("/");
+});
+
 router.get("/", (req, res, next) => {
   console.log("===== user!!======");
   console.log(req.user);
@@ -73,23 +90,4 @@ router.get("/", (req, res, next) => {
     res.json({ user: null });
   }
 });
-
-router.get("/country/:user", (req, res) => {
-  console.log("Get country");
-  const username = req.params.user;
-  console.log(username);
-  User.findOne({ username: username }, (err, user) => {
-    res.json({ defaultCountry: user.defaultCountry });
-  });
-});
-
-router.post("/logout", (req, res) => {
-  if (req.user) {
-    req.logout();
-    res.send({ msg: "logging out" });
-  } else {
-    res.send({ msg: "no user to log out" });
-  }
-});
-
 module.exports = router;
