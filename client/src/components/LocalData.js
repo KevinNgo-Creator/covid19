@@ -27,9 +27,7 @@ class LocalData extends Component {
     todayCases: null,
     todayDeaths: null,
     country: null,
-
     recovered: null,
-
     default_country: null,
     loading: false,
   };
