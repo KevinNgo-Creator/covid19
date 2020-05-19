@@ -1,6 +1,7 @@
 const express = require("express");
 const session = require("express-session");
 const dbConnection = require("./database");
+const mongoose = require("mongoose");
 const MongoStore = require("connect-mongo")(session);
 const passport = require("./passport");
 const user = require("./routes/user");
@@ -23,6 +24,16 @@ if (process.env.NODE_ENV === "production") {
 app.get("/", (request, response) => {
   response.sendFile(path.join(__dirname, "client/build", "index.html"));
 });
+mongoose.connect(
+  process.env.MONGODB_URI ||
+    "mongodb://user1:P@ssW0rd@ds161860.mlab.com:61860/heroku_6z4179r8",
+  {
+    useUnifiedTopology: true,
+    useNewUrlParser: true,
+    useCreateIndex: true,
+    useFindAndModify: false,
+  }
+);
 // Sessions
 app.use(
   session({
