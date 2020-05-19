@@ -44,14 +44,13 @@ const TopBar = (props) => {
               )}
             </NavItem>
             <NavItem>
-              <NavLink href="https://www.cdc.gov/coronavirus/2019-ncov/prevent-getting-sick/prevention.html">
-
+              <NavLink href="https://www.cdc.gov/coronavirus/2019-ncov/index.html">
                 <h6>What is COVID-19?</h6>
               </NavLink>
             </NavItem>
 
             <NavItem>
-              <NavLink href="/#/prevention">
+              <NavLink href="https://www.cdc.gov/coronavirus/2019-ncov/prevent-getting-sick/prevention.html">
                 <h6>Prevention</h6>
               </NavLink>
             </NavItem>
