@@ -9,7 +9,6 @@ import {
 } from "reactstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLungsVirus } from "@fortawesome/free-solid-svg-icons";
-import Axios from "axios";
 
 const TopBar = (props) => {
   return (
@@ -28,9 +27,15 @@ const TopBar = (props) => {
           </NavbarBrand>
           <Nav navbar className=" float-right">
             <NavItem>
-              <NavLink href="/">
-                <h6>Home</h6>
-              </NavLink>
+              {props.loggedIn ? (
+                <NavLink href="/#/dashboard">
+                  <h6>Home</h6>
+                </NavLink>
+              ) : (
+                <NavLink href="/">
+                  <h6>Home</h6>
+                </NavLink>
+              )}
             </NavItem>
             <NavItem>
               {props.loggedIn ? (
@@ -44,13 +49,13 @@ const TopBar = (props) => {
               )}
             </NavItem>
             <NavItem>
-              <NavLink href="https://www.cdc.gov/coronavirus/2019-ncov/index.html">
+              <NavLink href="/#/about-covid-19">
                 <h6>What is COVID-19?</h6>
               </NavLink>
             </NavItem>
 
             <NavItem>
-              <NavLink href="https://www.cdc.gov/coronavirus/2019-ncov/prevent-getting-sick/prevention.html">
+              <NavLink href="/#/prevention">
                 <h6>Prevention</h6>
               </NavLink>
             </NavItem>

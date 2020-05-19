@@ -20,7 +20,7 @@ router.post("/", (req, res) => {
     } else {
       const newUserCountry = new UserCountry({
         username: username,
-        defaultCountry: "",
+        defaultCountry: "US",
       });
       newUserCountry.save((err, savedUser) => {
         if (err) return res.json(err);

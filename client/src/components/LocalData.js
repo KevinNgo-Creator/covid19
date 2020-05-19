@@ -55,7 +55,7 @@ class LocalData extends Component {
     }
   }
   componentDidMount() {
-    console.log("DidMount:", this.props.username);
+    console.log("DidMount: Username = ", this.props.username);
     if (this.props.username) {
       // Add code to "Get" and set the default_County
       console.log("Get Country");
@@ -74,6 +74,15 @@ class LocalData extends Component {
           console.log("Get country error: ");
           console.log(error);
         });
+    } else {
+      axios.get("https://ipapi.co/country").then((res) => {
+        console.log(res);
+        this.setState({
+          default_country: res.data,
+        });
+        console.log(res.data);
+        this.setCountryData(res.data);
+      });
     }
     // Add code to "Get" and set the default_County
     console.log("DidMount....");
@@ -94,15 +103,6 @@ class LocalData extends Component {
           loading: true,
         });
       });
-
-    //   axios.get("https://ipapi.co/country").then((res) => {
-    //     console.log(res);
-    //     this.setState({
-    //       default_country: res.data,
-    //     });
-    //     console.log(res.data);
-    //     this.setCountryData(res.data);
-    //   });
   }
   setCountryData = (country) => {
     console.log("SetCountryData...");
