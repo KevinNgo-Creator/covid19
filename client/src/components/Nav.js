@@ -34,11 +34,11 @@ const TopBar = (props) => {
             </NavItem>
             <NavItem>
               {props.loggedIn ? (
-                <NavLink href="/logout">
+                <NavLink href="/#/logout">
                   <h6>Logout</h6>
                 </NavLink>
               ) : (
-                <NavLink href="/signup">
+                <NavLink href="/#/signup">
                   <h6>Sign up</h6>
                 </NavLink>
               )}
@@ -56,7 +56,7 @@ const TopBar = (props) => {
             </NavItem>
 
             <NavItem>
-              <NavLink href="/about">
+              <NavLink href="/#/about">
                 <h6>About</h6>
               </NavLink>
             </NavItem>
