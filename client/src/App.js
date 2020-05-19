@@ -5,7 +5,7 @@ import Countries from "./components/Countries";
 import axios from "axios";
 import Total from "./components/Total";
 import About from "./components/About";
-import AboutCorona from "./components/AboutCorona";
+//import AboutCorona from "./components/AboutCorona";
 import Prevention from "./components/Prevention";
 import CountryData from "./components/CountryData";
 import MapContainer from "./components/MapContainer";
@@ -58,9 +58,9 @@ class App extends Component {
   }
 
   getUser() {
-    axios.get("/user/").then((response) => {
+    axios.get("/user").then((response) => {
       console.log("Get user response: ");
-      console.log(response.data);
+      console.log(response.data.user);
       if (response.data.user) {
         console.log("Get User: There is a user saved in the server session: ");
 
@@ -225,7 +225,7 @@ class App extends Component {
                 />
               )}
             />
-            <Route exact path="/about-covid-19" component={AboutCorona} />
+            {/* <Route exact path="/about-covid-19" component={AboutCorona} /> */}
             <Route exact path="/prevention" component={Prevention} />
           </Switch>
         </div>

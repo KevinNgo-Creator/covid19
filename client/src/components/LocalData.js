@@ -33,6 +33,7 @@ class LocalData extends Component {
   };
   componentDidUpdate(prevProps, prevState) {
     console.log("DidUpdate");
+    console.log(prevProps.username, this.props.username);
     if (prevProps.username !== this.props.username && this.props.username) {
       // Add code to "Get" and set the default_County
       console.log("Get Country");
@@ -54,6 +55,26 @@ class LocalData extends Component {
     }
   }
   componentDidMount() {
+    console.log("DidMount:", this.props.username);
+    if (this.props.username) {
+      // Add code to "Get" and set the default_County
+      console.log("Get Country");
+      console.log(this.props.username);
+      axios
+        .get(`/user/country/${this.props.username}`)
+        .then((res) => {
+          console.log(res);
+          console.log("Country: " + res.data.defaultCountry);
+          this.setState({
+            default_country: res.data.defaultCountry,
+          });
+          this.setCountryData(res.data.defaultCountry);
+        })
+        .catch((error) => {
+          console.log("Get country error: ");
+          console.log(error);
+        });
+    }
     // Add code to "Get" and set the default_County
     console.log("DidMount....");
     axios.get("https://corona.lmao.ninja/v2/countries").then((res) => {
@@ -74,14 +95,14 @@ class LocalData extends Component {
         });
       });
 
-    axios.get("https://ipapi.co/country").then((res) => {
-      console.log(res);
-      this.setState({
-        default_country: res.data,
-      });
-      console.log(res.data);
-      this.setCountryData(res.data);
-    });
+    //   axios.get("https://ipapi.co/country").then((res) => {
+    //     console.log(res);
+    //     this.setState({
+    //       default_country: res.data,
+    //     });
+    //     console.log(res.data);
+    //     this.setCountryData(res.data);
+    //   });
   }
   setCountryData = (country) => {
     console.log("SetCountryData...");

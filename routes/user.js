@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const User = require("../database/models/user.js");
+const UserCountry = require("../database/models/usercountry.js");
 const passport = require("../passport");
 
 // /user/
@@ -17,9 +18,18 @@ router.post("/", (req, res) => {
         error: `Sorry, already a user with the username: ${username}`,
       });
     } else {
+      const newUserCountry = new UserCountry({
+        username: username,
+        defaultCountry: "",
+      });
+      newUserCountry.save((err, savedUser) => {
+        if (err) return res.json(err);
+      });
+
       const newUser = new User({
         username: username,
         password: password,
+        defaultCountry: "",
       });
       newUser.save((err, savedUser) => {
         if (err) return res.json(err);
@@ -35,7 +45,7 @@ router.post("/country", (req, res) => {
   const { username, defaultCountry } = req.body;
   console.log(username, defaultCountry);
   // ADD VALIDATION
-  User.findOne({ username: username }, (err, user) => {
+  UserCountry.findOne({ username: username }, (err, user) => {
     if (err) {
       console.log("User.js post error: ", err);
     } else if (user) {
@@ -66,7 +76,7 @@ router.get("/country/:user", (req, res) => {
   console.log("Get country");
   const username = req.params.user;
   console.log(username);
-  User.findOne({ username: username }, (err, user) => {
+  UserCountry.findOne({ username: username }, (err, user) => {
     console.log(user);
     res.json({ defaultCountry: user.defaultCountry });
   });
