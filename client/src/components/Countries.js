@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import Country from './Country';
+import React, { Component } from "react";
+import Country from "./Country";
 import {
   InputGroup,
   InputGroupText,
@@ -12,13 +12,13 @@ import {
   Pagination,
   PaginationItem,
   PaginationLink,
-} from 'reactstrap';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSearch } from '@fortawesome/free-solid-svg-icons';
+} from "reactstrap";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faSearch } from "@fortawesome/free-solid-svg-icons";
 
 class Countries extends Component {
   state = {
-    search: '',
+    search: "",
     filter: null,
     page: 1,
   };
@@ -44,26 +44,25 @@ class Countries extends Component {
     let skip = (this.state.page - 1) * PerPage;
 
     return (
-      <div style={{ marginTop: '10px' }}>
+      <div style={{ marginTop: "10px" }}>
         <Navbar
           light
-          expand='md'
-          className='fixed-top'
-          style={{ width: '35%', marginLeft: '32%', marginTop: '5px' }}
+          expand="md"
+          className="fixed-top"
+          style={{ width: "35%", marginLeft: "32%", marginTop: "5px" }}
         >
-          <InputGroup size='sm'>
-            <InputGroupAddon addonType='prepend'>
+          <InputGroup size="sm">
+            <InputGroupAddon addonType="prepend">
               <InputGroupText>
                 <FontAwesomeIcon icon={faSearch} />
               </InputGroupText>
             </InputGroupAddon>
             <Input
-              placeholder='sm'
-              bsSize='sm'
-              type='text'
-              name='text'
-              id='text'
-              placeholder='Search by Country Name ....'
+              bsSize="sm"
+              type="text"
+              name="text"
+              id="text"
+              placeholder="Search by Country Name ...."
               onChange={this.onChange}
             />
           </InputGroup>
@@ -82,16 +81,16 @@ class Countries extends Component {
             <Col>
               <div>
                 <Pagination
-                  style={{ marginLeft: '15px' }}
-                  size='sm'
-                  aria-label='Page navigation example'
+                  style={{ marginLeft: "15px" }}
+                  size="sm"
+                  aria-label="Page navigation example"
                 >
                   <PaginationItem
-                    class={`page-item ${this.state.page === 1 && 'disabled'}`}
+                    class={`page-item ${this.state.page === 1 && "disabled"}`}
                   >
                     <PaginationLink
-                      class='page-link'
-                      href='#'
+                      class="page-link"
+                      href="#"
                       onClick={() =>
                         this.setState({ page: this.state.page - 1 })
                       }
@@ -103,12 +102,12 @@ class Countries extends Component {
                   {Array.from({ length: pages }).map((_, i) => (
                     <PaginationItem
                       class={`page-item ${
-                        this.state.page === i + 1 ? 'active' : ''
+                        this.state.page === i + 1 ? "active" : ""
                       }`}
                     >
                       <PaginationLink
-                        class='page-link'
-                        href='#'
+                        class="page-link"
+                        href="#"
                         onClick={() => this.setState({ page: i })}
                       >
                         {++i}
@@ -118,12 +117,12 @@ class Countries extends Component {
                   ))}
                   <PaginationItem
                     class={`page-item ${
-                      this.state.page === pages && 'disabled'
+                      this.state.page === pages && "disabled"
                     }`}
                   >
                     <PaginationLink
-                      class='page-link'
-                      href='#'
+                      class="page-link"
+                      href="#"
                       onClick={() =>
                         this.setState({ page: this.state.page + 1 })
                       }
@@ -143,12 +142,12 @@ class Countries extends Component {
 }
 
 const userStyle = {
-  marginLeft: '50px',
-  marginRight: '50px',
-  marginBottom: '30px',
-  display: 'grid',
-  gridTemplateColumns: 'repeat(4, 1fr)',
-  gridGap: '1rem',
+  marginLeft: "50px",
+  marginRight: "50px",
+  marginBottom: "30px",
+  display: "grid",
+  gridTemplateColumns: "repeat(4, 1fr)",
+  gridGap: "1rem",
 };
 
 export default Countries;

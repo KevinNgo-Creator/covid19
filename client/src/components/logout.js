@@ -1,5 +1,4 @@
 import Axios from "axios";
-import React from "react";
 
 function logout() {
   Axios.get("/user/logout").then((res) => {

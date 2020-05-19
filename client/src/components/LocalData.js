@@ -2,18 +2,9 @@ import React, { Component } from "react";
 import axios from "axios";
 import ReactFlagsSelect from "react-flags-select";
 import "react-flags-select/css/react-flags-select.css";
-import {
-  Spinner,
-  Container,
-  Card,
-  CardTitle,
-  CardText,
-  Row,
-  Col,
-  Button,
-} from "reactstrap";
+import { Spinner, Container, Card, Row, Col, Button } from "reactstrap";
 import "../App.css";
-import TopNews from "./TopNews";
+//import TopNews from "./TopNews";
 import TopNewsProvider from "./TopNewsProvider";
 
 class LocalData extends Component {
@@ -174,13 +165,13 @@ class LocalData extends Component {
       (this.state.deaths / this.state.cases) *
       100
     ).toFixed(2);
-    const recoveredRate = (
+    /* const recoveredRate = (
       (this.state.recovered / this.state.cases) *
       100
     ).toFixed(2);
     const activeRate = ((this.state.active / this.state.cases) * 100).toFixed(
       2
-    );
+    ); */
     return (
       <div style={{ marginTop: "20px" }}>
         <div>
@@ -230,8 +221,11 @@ class LocalData extends Component {
                   {this.state.country}'s COVID-19 Statistics
                 </h3>
                 <Row
-                  style={{ textAlign: "center" }}
-                  style={{ marginTop: "45px", marginRight: "10px" }}
+                  style={{
+                    textAlign: "center",
+                    marginTop: "45px",
+                    marginRight: "10px",
+                  }}
                 >
                   <Col>
                     <Card
@@ -338,7 +332,7 @@ class LocalData extends Component {
               </Col>
             </Row>
             <hr />
-            <Row style={{ height: "40px", textAlign: "center" }}>
+            {/* <Row style={{ height: "40px", textAlign: "center" }}>
               <Col sm={3}></Col>
               <Col sm={6}>
                 <a></a>
@@ -346,7 +340,7 @@ class LocalData extends Component {
               <Col sm={3}>
                 <div></div>
               </Col>
-            </Row>
+            </Row> */}
           </Container>
         </div>
       </div>

@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import { Card, Button, CardTitle, CardText } from 'reactstrap';
+import React, { Component } from "react";
+import { Card, CardTitle } from "reactstrap";
 
 export class TopNews extends Component {
   render() {
@@ -8,18 +8,18 @@ export class TopNews extends Component {
         <Card
           body
           style={{
-            backgroundColor: '',
-            borderColor: 'black',
-            marginBottom: '5px',
+            backgroundColor: "",
+            borderColor: "black",
+            marginBottom: "5px",
           }}
         >
-          <CardTitle style={{ marginTop: '-10px' }}>
+          <CardTitle style={{ marginTop: "-10px" }}>
             <strong>{this.props.articles.title} </strong>
-            <span style={{ fontSize: '12px' }}>
+            <span style={{ fontSize: "12px" }}>
               [Published : {this.props.articles.publishedAt}]
             </span>
           </CardTitle>
-          <a className='text-center' href={this.props.articles.url}>
+          <a className="text-center" href={this.props.articles.url}>
             Read more
           </a>
         </Card>

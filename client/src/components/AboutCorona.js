@@ -5,6 +5,7 @@ export class AboutCorona extends Component {
     return (
       <div style={{ marginTop: "90px" }}>
         <iframe
+          title="About"
           width="100%"
           height="2500px"
           src="https://www.cdc.gov/coronavirus/2019-ncov/index.html"

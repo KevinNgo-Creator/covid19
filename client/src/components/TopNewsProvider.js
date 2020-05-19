@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
-import { Card, Button, CardTitle, CardText } from 'reactstrap';
-import TopNews from './TopNews';
+import React, { Component } from "react";
+//import { Card, Button, CardTitle, CardText } from 'reactstrap';
+import TopNews from "./TopNews";
 
 class TopNewsProvider extends Component {
   render() {
