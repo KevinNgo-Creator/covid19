@@ -86,7 +86,7 @@ class LocalData extends Component {
 
     axios
       .get(
-        "http://newsapi.org/v2/everything?q=covid19&language=en&sortBy=publishedAt&apiKey=240eb95a24ea43e886bb5f1fb00ffe5c"
+        `https://newsapi.org/v2/everything?q=covid19&language=en&sortBy=publishedAt&apiKey=${process.env.NEWSAPIKEY}`
       )
       .then((res) => {
         this.setState({
