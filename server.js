@@ -24,16 +24,12 @@ if (process.env.NODE_ENV === "production") {
 app.get("/", (request, response) => {
   response.sendFile(path.join(__dirname, "client/build", "index.html"));
 });
-mongoose.connect(
-  process.env.MONGODB_URI ||
-    "mongodb://user1:P@ssW0rd@ds161860.mlab.com:61860/heroku_6z4179r8",
-  {
-    useUnifiedTopology: true,
-    useNewUrlParser: true,
-    useCreateIndex: true,
-    useFindAndModify: false,
-  }
-);
+mongoose.connect(process.env.MONGODB_URI, {
+  useUnifiedTopology: true,
+  useNewUrlParser: true,
+  useCreateIndex: true,
+  useFindAndModify: false,
+});
 // Sessions
 app.use(
   session({
