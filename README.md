@@ -31,4 +31,5 @@ Jeff Bell, Avery Rouser, Jomain Rouser, Kevin Gno
 - Chart.JS "chart.js": "^2.9"
 - "react-chartjs-2": "^2.9.0"
 - Current News API: (https://newsapi.org/)
+- Mapbox GL JS
 - https://leafletjs.com/
